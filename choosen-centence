@@ -1,0 +1,4 @@
+1)
+javascript使用if(){....} else {...}来进行判断   //其应用规则与C语言一样
+
+2)javascript把null, NaN, undefined, 0 ''(空字符串)视为false，其他值一概视为true；

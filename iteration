@@ -1,0 +1,33 @@
+1)for 循环    //其使用方法与C语言一样
+注：alert();作为输出语句时，括号内可以用加号+连接不同的变量或常量：
+eg. alert('the result is'+x);   //the result is xxx
+
+2）循环最常用的地方是利用索引来遍历数组；
+
+3）for....in
+for循环的一个变体是for....in循环，它可以把一个对象的所有属性(输出的是属性名，而非属性值)依次循环出来:
+eg.
+var o = {
+   	name: 'Jack',
+        age: 20,
+	city: 'Beijing'
+	};
+	    for (var key in o) {
+	        alert(key); // 'name', 'age', 'city'
+		}
+notes:
+要过滤掉对象继承的属性，用hasOwnProperty()来实现：
+for (var key in o) {
+    if (o.hasOwnProperty(key)) {
+            alert(key); // 'name', 'age', 'city'
+	     }
+
+4）由于array也是对象, 而它的每个元素的索引被视为对象的“属性名”，因此，for...in循环可以直接循环出array的索引：
+var a = ['A', 'B', 'C'];
+for (var i in a) {
+    alert(i);   // '0', '1', '2'for...in对array的循环得到的是string，不是number
+    alert(a[i]); // 'A', 'B', 'C'
+    }
+
+5）while
+

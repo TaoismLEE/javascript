@@ -1,0 +1,50 @@
+1) number
+javascript不区分整数和浮点数，统一用Number表示，以下均是合法的Number类型：
+123, 0.456, 1.234e3, -99
+NaN;   //表示Not a number, 当无法计算结果时用NaN表示；
+Infinity;   //表示无限大，当数值超过了JavaScript的Number所能表示的最大值时，就表示为infinity
+notes：
+number类型数据可以直接做四则运算，eg.
+1+2；    //3
+2/0;    //infinity
+0/0;    //NaN
+
+
+2)string
+字符串是以单引号‘’或双引号“”括起来的任意文本；eg. 'abc'等价于“abc”， 与C语言有区别
+
+
+3）bool
+布尔值和布尔代数的表示完全一致，一个布尔值只有true和false两种；
+
+4)null和undefined
+a. null表示一个“空”的值，它和0以及空字符串‘’不同，0是一个数值，‘’表示长度为0的字符串，而null表示“空”。
+b. undefined表示值未定义，大多数情况下，我们都应该用null。undefined仅仅在判断函数参数是否传递的情况下有用。
+
+5）array
+数组（用[]表示）是一组按顺序排列的集合，集合的每个值称为元素，每个元素用逗号分隔。Javascript的数组可以包含任意数据类型， eg.
+var arr=[1,2,3.24,'hello',null,true];
+注：另一种创建数组的方法是通过Array()函数实现： new Array(1,2,3); //[1,2,3],然而并不推荐使用这种方式。
+
+6）对象
+javascript的对象是一组由“键-值”组成的无序集合，eg.
+var person={
+name:'Bob',
+age:20,
+tags:['js','web','mobile'],
+zipcode:null
+}
+javascript的键（又称为对象的属性）都是字符串类型，值可以是任意类型，用对象变量.属性名来引用，eg.
+person.name;   //Bob
+
+
+7)变量
+javascript的变量名中初与C语言保持一致外，还可以包含特殊字符$，声明时统一用var, eg.
+var $b=1;   //声明变量$b，且赋值为1
+注：javascript中，同一个变量可以反复赋值，而且可以是不同类型的变量（这种类型不固定的语言称为动态语言），但是注意只能用var声明一次。
+
+注：strict模式。在Javascript中，如果一个变量用var声明了，那么变量则被当成局部变量，其作用域为被申明的函数体内；如果未用var声明，而直接使用其则被当成是全局变量，这会带来变量值混乱。为了解决这个问题，引入strict模式，在js代码的第一行写上：‘use strict’；。在strict模式下，声明变量必须使用var。
+eg.
+'use strict';
+abc='Hello world';
+alert(abc);   //如果支持strict模式，则会报错说abc未定义

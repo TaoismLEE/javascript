@@ -1,0 +1,94 @@
+一、数组
+1.要取得array的长度，直接访问length属性，eg.
+var arr=[1,2,3.14,'Hello',null,true];
+arr.length;  //6
+注：请注意，直接给Array的length赋值会导致Array的大小变化：
+var arr = [1, 2, 3];
+arr.length; // 3
+arr.length = 6;
+arr;       // arr变为[1, 2, 3, undefined, undefined, undefined]
+arr.length = 2;
+arr;       // arr变为[1, 2]，数组长度发生了变化
+
+2.Array可以通过索引把对应的元素修改为新的值，与C语言一样。
+注：如果通过所以赋值时，索引超过了范围，同样会引起Array大小的变化：
+var arr = [1, 2, 3];
+arr[5] = 'x';
+arr;        // arr变为[1, 2, 3, undefined, undefined, 'x']
+
+3.与string类似，可以通过indexOf()函数来搜索一个指定的元素的位置：
+var arr = [10, 20, '30', 'xyz'];
+arr.indexOf(10); // 元素10的索引为0
+arr.indexOf(30); // 元素30没有找到，返回-1
+arr.indexOf('30'); // 元素'30'的索引为2
+
+4.slice()函数， 截取Array的部分元素，返回一个新的Array，数组本身不变:
+var arr=['A','B','C','D','E','F','G'];
+var aCopy=arr.slice();    //不给任何参数，该函数会从头到尾截取所有元素，利用这一点可以轻松复制一个数组。
+arr.slice(3);    //从索引3开始到结束：['D','E'...'G']
+arr.slice(0,3);   //从索引0开始到3结束['A','B',...'C'], 包含开始索引，却不包含结束索引
+
+5.push和pop
+push()向array的末尾添加若干元素，pop()则把array的最后一个元素删除掉：
+var arr=['a','b'];
+arr.push('1','2');   //返回新数组的长度
+arr;   //['a','b','1','2']
+arr.pop();  //pop返回'2'
+arr.pop();  //空数组继续pop不会报错，而是返回undefined
+
+6.unshift和shift
+如果要往array的头部添加若干元素，使用unshift()方法，shift()方法则把array的第一个元素删掉
+其逻辑与5完全一样，只是操作的是数组头
+
+7.sort
+sort()可以对当前array进行排序，它会直接修改当前array的元素位置（数组本身会变），直接调用时，按照默认顺序排序：
+var arr=['B','C','A'];
+arr.sort();
+arr;    //['A','B','C']， 也可按指定顺序排序，后面会提及
+
+8.reverse
+reverse()把整个array的元素进行反转排序；
+
+9.splice
+splice()方法是修改array的“万能方法”，它可以从指定的索引开始删除若干元素，然后再从该位置添加若干元素：
+var arr = ['Microsoft', 'Apple', 'Yahoo', 'AOL', 'Excite', 'Oracle'];
+// 从索引2开始删除3个元素,然后再添加两个元素:
+arr.splice(2, 3, 'Google', 'Facebook'); // 返回删除的元素 ['Yahoo', 'AOL', 'Excite']，删除元素包含其实元素
+arr; // ['Microsoft', 'Apple', 'Google', 'Facebook', 'Oracle']
+// 只删除,不添加:
+arr.splice(2, 2); // ['Google', 'Facebook']
+arr; // ['Microsoft', 'Apple', 'Oracle']
+// 只添加,不删除:
+arr.splice(2, 0, 'Google', 'Facebook'); // 返回[],因为没有删除任何元素
+arr; // ['Microsoft', 'Apple', 'Google', 'Facebook', 'Oracle']
+
+10.concat
+concat()方法把当前的array和另一个array链接起来，并返回一个新的array：
+var arr=['A','B','C'];
+var added=arr.concat([1,2,3]);
+added;            //['A',....'3']
+arr;         //['A'...'C']
+notes:
+concat()函数并不会修改当前array，而是返回一个新的数组；
+并且，可以接收任意个元素和array，并自动把array拆开，然后全部添加到新的array里：
+var arr=['A','B','C'];
+arr.concat(1,2,[3,4]);   //['A','B','C',1,2,3,4]
+
+11.join
+join()方法非常实用，它把当前array的每个元素都用指定的字符串连接起来，然后返回连接后的字符串：
+var arr=['A','B','C',1,2,3]
+arr.join(); //A-B-C-1-2-3，如果array的元素不是字符串，将自动转换为字符串后再连接
+
+12.多维数组
+如果数组的某个元素又是一个array，则可以形成多维数组，例如：
+var arr=[[1,2,3],[400,500,600],'-'];
+var x=arr[1][1];    
+x;   //500 
+
+
+
+
+
+
+
+
