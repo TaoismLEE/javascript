@@ -1,0 +1,25 @@
+1)Array, Map, Set都属于iterable类型，具有iterable类型的集合都可以通过新的for...of循环来遍历
+var a=['A','B','C'];
+var s=new Set(['A','B','C']);
+var m=new Map([[1,'x'],[2,'y'],[3,'z']]);
+for(var x of a){    //遍历Array
+alert(x);   //'A', 'B', 'C'
+}
+for(var x of s){    //遍历Set
+alert(x);   //'A', 'B', 'C'
+}
+for(var x of m){    //遍历Map
+alert(x[0]+'='+x[1]);
+}    //x以0开始，分别取出Map中所有键值对
+
+2)还有一种方式遍历iterable类型变量，即用iterable内置的forEach方法：它接收一个函数，每次迭代就自动回调该函数，eg.
+a.forEach(function(element, index, array){ //element指向当前元素的值，index指向///当前索引，array指向对象本身
+alert(element);
+});
+s.forEach(function(element, sameElement, set){alert(element);}); //for Set
+m.forEach(function(value, key, map){alert(value);}); //for Map
+
+
+
+
+
