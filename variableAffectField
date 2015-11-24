@@ -1,0 +1,28 @@
+1)变量提升   //因为这个怪异特性，所以建议在函数内部顶端定义该函数所有要用到变量
+JavaScript函数定义有个特点，它会先扫描整个函数体的语句，把所有申明的变量”提升“到函数顶部：
+'use strict';
+function foo() {
+    var x = 'Hello, ' + y;
+    alert(x);
+    var y = 'Bob';
+} 
+foo();   // hello，undefined
+//虽然是strict模式，但语句var x = 'Hello, ' + y;并不报错，原因是变量y在稍后申明了。但是alert显示Hello, undefined，说明变量y的值为undefined。这正是因为JavaScript引擎自动提升了变量y的声明，但不会提升变量y的赋值。
+
+2）全局作用域
+不在任何函数内定义的变量就具有全局作用域，实际上，JavaScript默认有一个全局对象window，全局作用域变量实际上是被绑定到window的一个属性：
+'use strict';
+var course = 'Learn JavaScript';
+alert(course); // 'Learn JavaScript'
+alert(window.course); // 'Learn JavaScript'
+因此，直接访问全局变量course和访问window.course是完全一样的。
+也因此，顶层函数的定义也被视为一个全局变量，并绑定到window对象：
+‘use strict’;
+function foo(){
+alert('foo');
+}
+foo();
+window.foo();//完全等价于直接调用foo();
+
+3)名字空间
+

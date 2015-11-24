@@ -1,9 +1,61 @@
 1)函数定义
+第一种定义方式：
 function abc(){....}
 function   //指出这是一个函数定义；
 abc   //是函数的名称；
-(x)   //括号内列出函数体，多个参数以逗号,分隔；
+(x)   //括号内列出函数参数，多个参数以逗号,分隔；
 {...}   //是函数体，可以包含若干语句，甚至没有任何语句
 notes：
 1.函数体内部的语句在执行时，一旦执行到return，函数就执行完毕，并返回结果。如果函数体中没有return语句，函数执行完毕也会返回结果，只是结果为undefined。
-2.javascript的函数也是一个对象，
+
+第二种定义方式：
+2.javascript的函数也是一个对象，因此可以按如下方式定义：
+var abs=function(x){
+if(x>0){
+return x;
+}else{
+return -x;}
+};   //分号不能少，表示一个完成的赋值语句
+在这种方式下，function(x){...}是一个匿名的函数，它没有函数名。但是，这个匿名函数赋值给了变量abs，所以通过变量abs就可以调用函数。
+
+2）函数调用
+调用函数时，按“顺序”传入参数即可。
+注：javascript允许传入任意个数参数而不影响调用，因此传入的参数比定义的参数多也没有问题，且传入的少也没有问题（eg. abs();  //NaN, 函数abs(x)的参数x将收到undefined，计算结果为NaN）。
+typeof 5;  //"number", typeof可以用来检测变量类型；
+
+3）函数参数
+a. arguments   //最常用来判断传入参数的个数
+arguments是javascript的一个关键字，它”只“在函数内部起作用，并且永远指向当前函数的调用者传入的所有参数。arguments类似Array但它不是一个Array：
+function foo(x) {
+    alert(x); // 10
+    for (var i=0; i<arguments.length; i++) {
+	        alert(arguments[i]); // 10, 20, 30
+    }
+ }
+ foo(10, 20, 30);
+
+b.rest
+由于javascript函数允许接收任意参数（可能大于定义的个数），于是我们就不得不用arguments来获取所有参数（比较麻烦），那么并引入了rest参数，来解决：
+function foo(a, b, ...rest) {
+    console.log('a = ' + a);
+    console.log('b = ' + b);
+    console.log(rest);
+ }
+ foo(1, 2, 3, 4, 5);
+ // 结果:
+ // a = 1
+ // b = 2
+ // Array [ 3, 4, 5 ]
+
+ foo(1);
+ // 结果:
+ // a = 1
+ // b = undefined
+ // Array []
+//rest 参数只能写在最后，前面用3个点.标识，从运行结果可知，传入的参数先绑定a,b，多余的以”数组“形式交给变量rest，所有就不在需要arguments来获取所有参数。
+注：如果传入的参数连正常定义的参数都没填满，rest参数会接收一个空数组（不是undefined哦）。
+
+
+
+
+
