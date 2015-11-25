@@ -48,3 +48,39 @@ eg.
 'use strict';
 abc='Hello world';
 alert(abc);   //如果支持strict模式，则会报错说abc未定义
+
+8)Map和Set
+javascript的对象有个小问题，就是键必须是字符串。但实际上Number或者其他数据类型作为键也应该非常合理------》为了解决这个问题，所以引入了新数据类型Map, 查看浏览器是否支持Map数据类型，用下面例子验证：
+‘use strict’;
+var m =new Map();
+var s=new Set();
+alert('你的浏览器支持Map和Set!');
+
+a. Map   //是一组键值对的结构，具有极快的查找速度。
+初始化一个Map需要一个二维数组，或者直接初始化一个空Map，如下：
+二维数组：
+var m=new Map([['Michael',95],['Bob',75],['Tracy',85]]);
+m.get('Michael');    //95
+空Map
+var m=new Map();   //初始化空的Map
+m.set('Adam',67);   //添加新的key-value
+m.has('Adam');     //判断是否有键Adam： true
+m.get('Adam');    //获取value67
+m.set('Adam',77);    //多次对同一个键赋值，后面的会覆盖前面的
+m.delete('Adam');   //删除键值对
+m.get('Adam');        //返回undefined
+
+b. Set
+Set与Map类似，也是一组key的集合，区别是不存储value。所以，在Set中，没有重复的key
+初始化一个Set需要一个一维数组，或者直接初始化一个空Set，如下：
+一维数组：
+var s=new Set([1,2,3,3,'3']);   //重复元素在Set中自动过滤
+s;   //Set{1,2,3,"3"}
+空Set
+var s1=new Set();
+var s2=new Set([1,2,3]);
+通过add(key)方法可以添加元素到Set中：
+s2.add(4);   //添加4，并返回添加后的Set
+通过delete(key)方法可以删除元素：
+s2.delete(4);  //删除4，删除不存在的返回false
+

@@ -1,0 +1,45 @@
+1)方法
+在一个对象中绑定函数，称为这个对象的方法。eg.
+var xiaoming={
+name:'小明'，
+birth：1990，
+age：function(){
+var y=new Date().getFullYear();
+return y-this.birth;
+}
+};
+
+xiaoming.age();  //25, 必须以obj.xxx()形式调用
+//绑定到对象上的函数称为”方法“，与普通函数无异
+//函数内部使用了this关键字：在一个方法内部，this是一个特殊的变量，它始终指向当前对象（也就是如上xiaoming变量），因此，this.birth完全等价于xiaoming.birth
+function getAge() {
+    var y = new Date().getFullYear();
+        return y - this.birth;
+	}
+
+	var xiaoming = {
+	    name: '小明',
+	        birth: 1990,
+		    age: getAge     //只用写函数名就好
+		    }
+xiaoming.age();   //25， 注意调用方式
+getAge();   //NaN, 因为直接调用，this指向的是全局对象window
+
+2）apply
+虽然this默认指向当前对象，但是我们可以通过apply方法来修改this的指向，eg.
+getAge.apply(xiaoming, []);  //25， 函数本身参数为空
+注：
+a.apply接收两个参数，第一个参数就是需要绑定的this变量，第二个参数是Array数组（表示函数本身的参数）。
+b.另一个与apply（）类似的方法是call(),唯一区别是：
+apply()把参数打包成Array再传人； 而call()把参数顺序传入
+Math.max.apply(null,[3,4,5]);    //5
+Math.max.call(null,3,4,5);     //5  对于普通函数调用，我们通常把this绑定为null
+
+
+3）装饰器
+所谓装饰器，即因为JavaScript的所有对象都是动态的，即使内置的函数，我们也可以重新指向新的函数。
+window.parseInt = function(){};   //重新定义新的parseInt函数
+
+
+
+
