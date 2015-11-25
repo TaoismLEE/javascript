@@ -25,4 +25,24 @@ foo();
 window.foo();//完全等价于直接调用foo();
 
 3)名字空间
+全局变量会绑定到window上，不同的JavaScript文件如果使用了相同的全局变量，或者定义了相同名字的顶层函数，就会造成命名冲突，且很难发现。  减少冲突的一个方法就是： 把自己的所有变量和函数全部绑定到一个全局变量中， eg。
+var MYAPP={};    //唯一全局变量MYAPP
+MYAPP.name='myapp';
+MYAPP.version=1.0;     //其他变量
+MYAPP.foo = function(){..};    //其他函数
 
+4）let
+//由于变量提示及JavaScript的变量作用域实际上是函数内部，所以我们在for循环等语句块中是无法定义具有局部作用的变量，为了解决这个问题，ES6中引入了“let”， 用let代替var可以申明一个块级作用域的变量：
+function foo() {
+    var sum = 0;
+        for (let i=0; i<100; i++) {   //i的作用域仅在for循环内部
+	        sum += i;
+		    }
+		        i += 1; // SyntaxError
+}
+
+5）常量
+ES6之前，定义一个变量，且不改变其值当成常量；
+ES6标准引入了关键字const，const与let都具有块级作用域：
+const PI=3.14;
+PI;   //3.14
