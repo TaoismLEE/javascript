@@ -1,0 +1,49 @@
+1)面向对象编程
+a.传统的面向对象有两个基本概念：“类”和“实例”。类是对象的类型模板，类本身是一种模型，并不表示任何具体的某个什么； 实例就是根据类创建具体的对象。
+b.JavaScript中，概念会有点不同，JavaScript中不区分类和实例，而是通过“原型（prototype）”来实现面向对象编程：JavaScript的原型链和JAVA的class区别就在，它没有class的概念，所有对象都是实例，所谓继承关系不过是把一个对象的原型指向另一个对象而已。注：由于JavaScript的动态性，所以在程序中你可以改变对象原型的指向。
+
+2）修改对象原型、以及基于原型创建新的对象
+a.修改对象原型方法一
+xiaoming._proto_=student;   //将xiaoming的原型指向student
+b.用Object.create()方法可以传入一个原型对象，并创建一个基于该原型的新对象，但是新对象什么属性都没有，因此，我们可以编写一个函数来创建新对象：
+var Student = {
+    name: 'Robot',
+    height: 1.2,
+    run: function () {
+	            console.log(this.name + ' is running...');
+		        }
+        	};
+function createStudent(name) {
+   var s = Object.create(Student);
+       s.name = name;
+           return s;
+	   }
+var xiaoming=createStudent('小明');
+
+
+//JavaScript对每个创建的对象都会设置一个原型，指向它的原型对象//
+
+3)构造函数   //用来创建对象
+第一步
+先定义一个构造函数：
+function Student(name) {
+    this.name = name;
+    this.hello = function () {
+    alert('Hello, ' + this.name + '!');
+		    }
+	 }
+第二步
+这就是一个普通函数，但是在JavaScript中，可以用new来调用这个函数，并返回一个对象：
+var xiaoming = new Student('小明');
+xiaoming.name; // '小明'
+xiaoming.hello(); // Hello, 小明!
+注：
+a.如果不写new，它就是一个普通函数，它返回undefined(因为没有return语句)。但是如果写了new，它就成了构造函数，绑定的this指向新创建的对象，并默认返回this（也就是说，不需要在最后写return this;）
+b.用new Student()创建的对象还从原型上获得了一个constructor属性，它指向函数Student本身：
+xiaoming.constructor===Student;    //true
+c.函数Student会有个prototype属性--》Student.prototype代表的就是xiaoming的原型对象， 所以：
+Student.prototype.constructor===Student;   //true
+
+
+
+
