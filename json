@@ -1,0 +1,19 @@
+1)JSON   //现在非常流行的一种数据交换格式
+把任何JavaScript对象变成JSON，就是把这个对象“序列化”成一个JSON格式的字符串，这样就能够通过网络传递给其他计算机；
+如果收到一个JSON格式的字符串，只需“反序列化”成一个JavaScript对象，就可以在JavaScript中直接使用（js内置了JSON的解析）
+序列化：
+var xiaoming = {
+    name: '小明',
+    age: 14,
+    gender: true,
+    height: 1.65,
+    grade: null,
+    'middle-school': '\"W3C\" Middle School',
+    skills: ['JavaScript', 'Java', 'Python', 'Lisp']
+    }
+JSON.stringify(xiaoming);   //// '{"name":"小明","age":14,"gender":true,"height":1.65,"grade":null,"middle-school":"\"W3C\" Middle School","skills":["JavaScript","Java","Python","Lisp"]}'
+反序列化：
+拿到一个JSON格式的字符串，我们可以直接用JSON.parse()把它变成一个JavaScript对象：JSON.parse('[1,2,3,true]'); // [1, 2, 3, true]
+JSON.parse('{"name":"小明","age":14}'); // Object {name: '小明', age: 14}
+JSON.parse('true'); // true
+JSON.parse('123.45'); // 123.45
