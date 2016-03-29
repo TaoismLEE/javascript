@@ -1,0 +1,8 @@
+As a language designer, you should think about three questions:
+1. How many keywords should be involved?
+2. How many kinds of variables and arithmetic symbols should be involved?
+3. How many kinds of sentences should be created?
+
+For question 1, different language varies
+For question 2, different language varies, but gennerally speaking, contains int, float, char, arr[], object{} etc. and arithmetic operators, logical operators and relation operators.
+For question 3, usually three kinds of sentences are OK: sequenced, choosen, and iteration sentences.
